@@ -44,7 +44,7 @@
     "format": "eslint --fix 'src/**/*.{js,ts,tsx}'"
   },
   "dependencies": {
-    "@ursajs/logger": "^0.0.2"
+    "@ursajs/logger": "^0.0.0"
   },
   "devDependencies": {
     "@types/koa": "^2.0.48",

@@ -18,8 +18,8 @@
   },
   "dependencies": {
     "@ursajs/core": "^0.0.2",
-    "@ursajs/logger": "^0.0.2",
-    "@ursajs/plugin-logger": "^0.0.2",
+    "@ursajs/logger": "^0.0.0",
+    "@ursajs/plugin-logger": "^0.0.0",
     "@ursajs/router": "^0.0.2",
     "koa": "^2.11.0",
     "koa-views": "^6.2.1",

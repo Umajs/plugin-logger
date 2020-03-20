@@ -7,6 +7,7 @@ import ContextLogger from './logger/contextLogger';
 
 const Logger = new WFLogger();
 const UrsaLogger = WFLogger;
+
 export default Logger;
 export {
     Logger,
