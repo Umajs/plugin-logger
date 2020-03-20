@@ -1,0 +1,72 @@
+{
+  "name": "@ursajs/logger",
+  "version": "0.0.2",
+  "description": "ursajs logger日志",
+  "author": "BubbleM <bubblelm@163.com>",
+  "contributors": [
+    {
+      "name": "BubbleM",
+      "email": "bubblelm@163.com"
+    },
+    {
+      "name": "dazjean",
+      "email": "zunyi_zjj@163.com"
+    }
+  ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/",
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Ursajs/plugin-logger.git"
+  },
+  "license": "ISC",
+  "main": "lib/index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib",
+    "index.d.ts"
+  ],
+  "scripts": {
+    "test": "mocha test",
+    "lint": "esw src --clear --ext .ts",
+    "lint-w": "esw src --clear -w --ext .ts",
+    "build-w": "tsc -w --inlineSourceMap",
+    "start": "run-p lint-w build-w",
+    "prebuild": "esw src --ext .ts",
+    "build": "tsc",
+    "prepublish": "npm run build",
+    "demo": "ts-node-dev demo.ts",
+    "format": "eslint --fix 'src/**/*.{js,ts,tsx}'"
+  },
+  "dependencies": {
+    "chalk": "^2.4.2",
+    "mkdirp": "^0.5.1",
+    "node-schedule": "^1.3.2",
+    "utility": "^1.16.1"
+  },
+  "devDependencies": {
+    "@types/koa": "^2.0.48",
+    "@types/node": "^10.12.15",
+    "@types/node-schedule": "^1.2.4",
+    "@typescript-eslint/eslint-plugin": "^1.1.0",
+    "@typescript-eslint/parser": "^1.1.0",
+    "eslint": "^5.10.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-node": "^8.0.1",
+    "eslint-plugin-promise": "^4.1.1",
+    "eslint-plugin-typescript": "^0.14.0",
+    "eslint-watch": "^4.0.2",
+    "ko-sleep": "^1.0.3",
+    "koa": "^2.8.1",
+    "npm-run-all": "^4.1.5",
+    "ts-node-dev": "^1.0.0-pre.32",
+    "typescript": "^3.2.2"
+  },
+  "gitHead": "123cd81653c925fe55536be85954b3264432d280"
+}
