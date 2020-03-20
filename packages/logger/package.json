@@ -14,7 +14,7 @@
     }
   ],
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com/",
+    "registry": "https://registry.npmjs.org/",
     "access": "public"
   },
   "repository": {
@@ -68,5 +68,5 @@
     "ts-node-dev": "^1.0.0-pre.32",
     "typescript": "^3.2.2"
   },
-  "gitHead": "123cd81653c925fe55536be85954b3264432d280"
+  "gitHead": "986c06334daecc7e8169c5a405fe71dac8093329"
 }
