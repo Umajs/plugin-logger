@@ -1,6 +1,6 @@
 {
   "name": "@ursajs/plugin-logger",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "ursajs logger日志插件",
   "author": "dazjean <zunyi_zjj@163.com>",
   "contributors": [
@@ -44,7 +44,7 @@
     "format": "eslint --fix 'src/**/*.{js,ts,tsx}'"
   },
   "dependencies": {
-    "@ursajs/logger": "^0.0.0"
+    "@ursajs/logger": "^0.0.1"
   },
   "devDependencies": {
     "@types/koa": "^2.0.48",
