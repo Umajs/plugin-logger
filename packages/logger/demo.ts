@@ -18,8 +18,8 @@ import * as Koa from 'koa';
 //     outputJSON: true
 // }));
 
-import WFLogger from './src/logger/wfLogger';
-var logger = new WFLogger({
+import UrsaLogger from './src/logger/ursaLogger';
+var logger = new UrsaLogger({
     level: 'INFO',
     consoleLevel: 'ALL',
     allowDebugAtProd: true,

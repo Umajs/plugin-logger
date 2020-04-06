@@ -2,20 +2,20 @@ import * as path from 'path';
 import Logger from '../logger';
 import ConsoleTransport from '../transports/console';
 import FileBufferTransport from '../transports/fileBuffer';
-import { TWFLoggerOption } from '../types/loggeroption.t';
+import { TUrsaLoggerOption } from '../types/loggeroption.t';
 
 /**
- * wflogger 封装为wf框架使用的logger类
+ * ursalogger 封装为uras.js框架使用的logger类
  */
-export default class WFLogger extends Logger {
-    protected options: TWFLoggerOption;
+export default class UrsaLogger extends Logger {
+    protected options: TUrsaLoggerOption;
 
-    constructor(option?:TWFLoggerOption) {
+    constructor(option?:TUrsaLoggerOption) {
         super();
         option && this.init(option);
     }
 
-    init(option:TWFLoggerOption) {
+    init(option:TUrsaLoggerOption) {
         this.options = option;
 
         const { file, level, encoding, outputJSON, flushInterval, maxBufferLength, allowDebugAtProd, splitTime } = this.options;

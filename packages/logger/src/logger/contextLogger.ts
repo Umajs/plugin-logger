@@ -1,21 +1,22 @@
 import * as Koa from 'koa';
-import WFLogger from './wfLogger';
+import UrsaLogger from './ursaLogger';
 import { TConsoleMeta } from '../types/console.t';
-import { TWFLoggerOption } from '../types/loggeroption.t';
 
-
-export default class ContextLogger extends WFLogger {
+export default class ContextLogger {
     private ctx: Koa.BaseContext;
 
+    private logger: UrsaLogger;
+
+    private meta: any;
 
     /**
      * @constructor
      * @param ctx 上下文
      * @param logger wflogger实例
      */
-    constructor(ctx: Koa.BaseContext, options: TWFLoggerOption) {
-        super(options);
+    constructor(ctx: Koa.BaseContext, logger:UrsaLogger) {
         this.ctx = ctx;
+        this.logger = logger;
         this.meta = this.getMeta;
     }
 
@@ -45,5 +46,25 @@ export default class ContextLogger extends WFLogger {
             ctx.method} ${
             ctx.url
         }]`;
+    }
+
+    error(...rest:any): void {
+        this.logger.log('error', rest, this.meta);
+    }
+
+    warn(...rest: any): void {
+        this.logger.log('warn', rest, this.meta);
+    }
+
+    info(...rest:any): void {
+        this.logger.log('info', rest, this.meta);
+    }
+
+    debug(...rest:any): void {
+        this.logger.log('debug', rest, this.meta);
+    }
+
+    close() {
+        this.logger.close();
     }
 }

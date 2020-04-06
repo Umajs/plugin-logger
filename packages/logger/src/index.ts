@@ -2,11 +2,10 @@
 import ConsoleTransport from './transports/console';
 import FileTransport from './transports/file';
 import FileBufferTransport from './transports/fileBuffer';
-import WFLogger from './logger/wfLogger';
+import UrsaLogger from './logger/ursaLogger';
 import ContextLogger from './logger/contextLogger';
 
-const Logger = new WFLogger();
-const UrsaLogger = WFLogger;
+const Logger = new UrsaLogger();
 
 export default Logger;
 export {

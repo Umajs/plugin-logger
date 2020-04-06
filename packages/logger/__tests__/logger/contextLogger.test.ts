@@ -3,12 +3,11 @@ import * as path from 'path';
 import * as fs from 'fs';
 import * as request from 'request';
 import * as sleep from 'ko-sleep';
-//import WFLogger from './../../src/logger/wfLogger';
 import contextLogger from './../../src/logger/contextLogger';
 import { TConsoleMeta } from './../../src/types/console.t';
-import { TWFLoggerOption } from './../../src/types/loggeroption.t'
+import { TUrsaLoggerOption } from './../../src/types/loggeroption.t'
 
-const wfoptions:TWFLoggerOption = {
+const ursaOptions:TUrsaLoggerOption = {
     level: 'ALL',
     consoleLevel: 'NONE',
     file: path.join(__dirname, '../__mocks__/log/ctxLogger.test.log')
@@ -17,7 +16,7 @@ const app = new Koa();
 let ctxLogger : contextLogger;
 
 app.use(async ctx => {
-    ctxLogger = new contextLogger(ctx, wfoptions);
+    ctxLogger = new contextLogger(ctx, ursaOptions);
     ctxLogger.info('ctxLogger-info');
     ctxLogger.warn('ctxLogger-warn');
     ctxLogger.error('ctxLogger-error');

@@ -1,4 +1,4 @@
-export type TWFLoggerOption = {
+export type TUrsaLoggerOption = {
     level?: string,
     consoleLevel?: string,
     replaceConsole?:boolean,

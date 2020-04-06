@@ -1,7 +1,7 @@
-import { WF } from '@ursajs/core';
+import { Ursa } from '@ursajs/core';
 
-export default (wf: WF) => {
-    wf.app.on('error', (e) => {
+export default (ursa: Ursa) => {
+    ursa.app.on('error', (e) => {
         console.error(e);
     });
 };
