@@ -1,6 +1,6 @@
 {
   "name": "app",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "private": true,
   "description": "todo",
   "author": "dazjean",
@@ -18,8 +18,8 @@
   },
   "dependencies": {
     "@ursajs/core": "^0.0.2",
-    "@ursajs/logger": "^0.0.3",
-    "@ursajs/plugin-logger": "^0.0.3",
+    "@ursajs/logger": "^0.0.4",
+    "@ursajs/plugin-logger": "^0.0.4",
     "@ursajs/router": "^0.0.2",
     "koa": "^2.11.0",
     "koa-views": "^6.2.1",
