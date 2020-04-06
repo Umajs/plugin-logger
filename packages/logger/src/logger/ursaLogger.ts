@@ -8,14 +8,15 @@ import { TUrsaLoggerOption } from '../types/loggeroption.t';
  * ursalogger 封装为uras.js框架使用的logger类
  */
 export default class UrsaLogger extends Logger {
-    protected options: TUrsaLoggerOption;
-
     constructor(option?:TUrsaLoggerOption) {
         super();
-        option && this.init(option);
+        this.options = option;
+        option && this.config(option);
     }
 
-    init(option:TUrsaLoggerOption) {
+    options: TUrsaLoggerOption;
+
+    config(option:TUrsaLoggerOption) {
         this.options = option;
 
         const { file, level, encoding, outputJSON, flushInterval, maxBufferLength, allowDebugAtProd, splitTime } = this.options;
@@ -71,5 +72,9 @@ export default class UrsaLogger extends Logger {
         if (this.options.replaceConsole) {
             this.overrideConsole();
         }
+    }
+
+    static init(option: TUrsaLoggerOption) {
+        return new UrsaLogger(option);
     }
 }

@@ -19,7 +19,20 @@ import * as Koa from 'koa';
 // }));
 
 import UrsaLogger from './src/logger/ursaLogger';
-var logger = new UrsaLogger({
+// var logger = new UrsaLogger({
+//     level: 'INFO',
+//     consoleLevel: 'ALL',
+//     allowDebugAtProd: true,
+//     encoding: 'utf-8',
+//     outputJSON: false,
+//     dir: './loginfo',
+//     errorLogName: 'errorlog.log',
+//     warnLogName: 'warnlog.log',
+//     infoLogName: 'infolog.log',
+//     splitTime: '30 * * * * *' //每分钟30秒触发
+//     // file: './loginfo/logger.log',
+// });
+let logger = UrsaLogger.init({
     level: 'INFO',
     consoleLevel: 'ALL',
     allowDebugAtProd: true,

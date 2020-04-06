@@ -34,6 +34,7 @@ export default (ursa: Ursa, options: TUrsaLoggerOption) => {
 
     ursa.app.use((ctx: any, next) => {
         ctx.logger = new ContextLogger(ctx, logger);
+
         return next();
     });
 };

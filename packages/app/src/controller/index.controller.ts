@@ -1,7 +1,7 @@
 import  { BaseController, Result } from '@ursajs/core';
 import * as path from 'path';
 import { UrsaLogger } from '@ursajs/logger';
-const logger = new UrsaLogger({
+const logger = UrsaLogger.init({
     level: 'ALL',
     consoleLevel: 'ALL',
     encoding: 'utf-8',
