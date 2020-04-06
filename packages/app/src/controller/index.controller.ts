@@ -1,7 +1,7 @@
 import  { BaseController, Result } from '@ursajs/core';
 import * as path from 'path';
 import { UrsaLogger } from '@ursajs/logger';
-const logger = UrsaLogger.init({
+UrsaLogger.init({
     level: 'ALL',
     consoleLevel: 'ALL',
     encoding: 'utf-8',
@@ -9,10 +9,10 @@ const logger = UrsaLogger.init({
 });
 export default class Index extends BaseController {
     index() {
-        logger.debug('debug');
-        logger.info('info GET');
-        logger.warn('warn');
-        logger.error('error');
+        UrsaLogger.debug('debug');
+        UrsaLogger.info('info GET');
+        UrsaLogger.warn('warn');
+        UrsaLogger.error('error');
         this.ctx.logger.error('this is plugin-logger logger error');
         return Result.json({
             msg: 'success',

@@ -11,14 +11,13 @@ export default class UrsaLogger extends Logger {
     constructor(option?:TUrsaLoggerOption) {
         super();
         this.options = option;
-        option && this.config(option);
+        option && this.init(option);
     }
 
     options: TUrsaLoggerOption;
 
-    config(option:TUrsaLoggerOption) {
+    init(option:TUrsaLoggerOption) {
         this.options = option;
-
         const { file, level, encoding, outputJSON, flushInterval, maxBufferLength, allowDebugAtProd, splitTime } = this.options;
         const fileOption = { file, level, encoding, outputJSON, flushInterval, maxBufferLength, allowDebugAtProd, splitTime };
 
@@ -72,9 +71,5 @@ export default class UrsaLogger extends Logger {
         if (this.options.replaceConsole) {
             this.overrideConsole();
         }
-    }
-
-    static init(option: TUrsaLoggerOption) {
-        return new UrsaLogger(option);
     }
 }

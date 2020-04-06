@@ -33,17 +33,17 @@ class Logger {
         });
     }
 
-    log(level:string, rest:any, meta?:any) {
+    log(level:string, rest:any) {
         const LEVEL = level.toUpperCase();
         const duplicateLogger = this.duplicateLoggers.get(level);
 
         if (duplicateLogger && duplicateLogger.shouleLog(LEVEL)) {
-            duplicateLogger.log(LEVEL, rest, meta);
+            duplicateLogger.log(LEVEL, rest, this.meta);
         }
 
         for (const transport of this.transports.values()) {
             if (transport && transport.shouleLog(LEVEL)) {
-                transport.log(LEVEL, rest, meta);
+                transport.log(LEVEL, rest, this.meta);
             }
         }
     }
