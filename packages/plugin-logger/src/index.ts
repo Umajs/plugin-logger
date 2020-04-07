@@ -1,12 +1,10 @@
-// 自定义插件
-import * as Koa from 'koa';
 import { Ursa } from '@ursajs/core';
-import { ContextLogger } from '@ursajs/logger';
+import { UrsaLogger, ContextLogger } from '@ursajs/logger';
 import * as path from 'path';
 import { TUrsaLoggerOption } from './type/loggeroption.t';
 
-export default (ursa: Ursa, options: TUrsaLoggerOption, context?: Koa.BaseContext) => {
-    const logger = new ContextLogger(context, {
+export default (ursa: Ursa, options: TUrsaLoggerOption) => {
+    const logger = UrsaLogger.instance({
         level: 'ALL',
         consoleLevel: 'ALL',
         allowDebugAtProd: true,
@@ -17,8 +15,7 @@ export default (ursa: Ursa, options: TUrsaLoggerOption, context?: Koa.BaseContex
     });
 
     ursa.app.use((ctx: any, next) => {
-        logger.updateCtx(ctx);
-        ctx.logger = logger;
+        ctx.logger = new ContextLogger(ctx, logger);
 
         return next();
     });

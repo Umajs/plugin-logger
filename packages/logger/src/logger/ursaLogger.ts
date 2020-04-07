@@ -4,20 +4,19 @@ import ConsoleTransport from '../transports/console';
 import FileBufferTransport from '../transports/fileBuffer';
 import { TUrsaLoggerOption } from '../types/loggeroption.t';
 
-/**
- * ursalogger 封装为uras.js框架使用的logger类
- */
+let instance: UrsaLogger = null;
+
 export default class UrsaLogger extends Logger {
-    constructor(option?:TUrsaLoggerOption) {
+    private constructor(options?:TUrsaLoggerOption) {
         super();
-        this.options = option;
-        option && this.init(option);
+        this.options = options;
+        options && this.init(options);
     }
 
     options: TUrsaLoggerOption;
 
-    init(option:TUrsaLoggerOption) {
-        this.options = option;
+    init(options:TUrsaLoggerOption) {
+        this.options = options;
         const { file, level, encoding, outputJSON, flushInterval, maxBufferLength, allowDebugAtProd, splitTime } = this.options;
         const fileOption = { file, level, encoding, outputJSON, flushInterval, maxBufferLength, allowDebugAtProd, splitTime };
 
@@ -71,5 +70,13 @@ export default class UrsaLogger extends Logger {
         if (this.options.replaceConsole) {
             this.overrideConsole();
         }
+    }
+
+    static instance(options?: TUrsaLoggerOption):UrsaLogger {
+        if (instance) return instance;
+
+        instance = new UrsaLogger(options);
+
+        return instance;
     }
 }
