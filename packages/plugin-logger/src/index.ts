@@ -1,6 +1,8 @@
 import * as path from 'path';
-import { TPlugin, IContext } from '@ursajs/core';
+import Ursa, { TPlugin, IContext } from '@ursajs/core';
 import { UrsaLogger } from '@ursajs/logger';
+
+const loggerConfig = Ursa.config.plugin.logger || {};
 
 const options = Object.assign({
     level: 'ALL',
@@ -8,11 +10,11 @@ const options = Object.assign({
     allowDebugAtProd: true,
     encoding: 'utf-8',
     outputJSON: true,
-    file: path.join(__dirname, '../logger/logger.log'),
+    file: path.join(Ursa.instance().options.ROOT, '../log/logger.log'),
     formatter(meta?:any) {
         return `[${meta.level} ${meta.pid}] ${meta.date} ${meta.hostname} ${meta.paddingMessage}: ${meta.message}`;
     },
-}, {});
+}, loggerConfig["options"]);
 
 export default <TPlugin>{
     context: {

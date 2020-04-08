@@ -11,9 +11,9 @@
             "outputCapture": "std",
             "program": "${workspaceRoot}/packages/app/node_modules/ts-node/dist/bin.js",
             "args": [
-                "src/app.ts"
+                "__tests__/app/src/app.ts"
             ],
-            "cwd": "${workspaceRoot}/packages/app",
+            "cwd": "${workspaceRoot}/packages/plugin-logger",
             "protocol": "inspector"
         }
     ]
