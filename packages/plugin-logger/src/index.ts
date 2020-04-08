@@ -1,22 +1,33 @@
-import { Ursa } from '@ursajs/core';
-import { UrsaLogger, ContextLogger } from '@ursajs/logger';
 import * as path from 'path';
-import { TUrsaLoggerOption } from './type/loggeroption.t';
+import { TPlugin, IContext } from '@ursajs/core';
+import { UrsaLogger } from '@ursajs/logger';
 
-export default (ursa: Ursa, options: TUrsaLoggerOption) => {
-    const logger = UrsaLogger.instance({
-        level: 'ALL',
-        consoleLevel: 'ALL',
-        allowDebugAtProd: true,
-        encoding: 'utf-8',
-        outputJSON: true,
-        file: path.join(ursa.options.ROOT, '../logger/logger.log'), // 日志默认和src同级
-        ...options,
-    });
+const options = Object.assign({
+    level: 'ALL',
+    consoleLevel: 'ALL',
+    allowDebugAtProd: true,
+    encoding: 'utf-8',
+    outputJSON: true,
+    file: path.join(__dirname, '../logger/logger.log'),
+    formatter(meta?:any) {
+        return `[${meta.level} ${meta.pid}] ${meta.date} ${meta.hostname} ${meta.paddingMessage}: ${meta.message}`;
+    },
+}, {});
 
-    ursa.app.use((ctx: any, next) => {
-        ctx.logger = new ContextLogger(ctx, logger);
-
-        return next();
-    });
+export default <TPlugin>{
+    context: {
+        logger: UrsaLogger.instance(options),
+    },
+    use: {
+        async handler(ctx: IContext, next: Function) {
+            ctx.logger.meta = {
+                paddingMessage: `[${
+                    ctx.ip}/${
+                    ctx.method} ${
+                    ctx.url
+                }]`,
+            };
+            await next();
+        },
+    },
 };

@@ -7,7 +7,7 @@ import { TUrsaLoggerOption } from '../types/loggeroption.t';
 let instance: UrsaLogger = null;
 
 export default class UrsaLogger extends Logger {
-    private constructor(options?:TUrsaLoggerOption) {
+    constructor(options?:TUrsaLoggerOption) {
         super();
         this.options = options;
         options && this.init(options);
@@ -17,8 +17,8 @@ export default class UrsaLogger extends Logger {
 
     init(options:TUrsaLoggerOption) {
         this.options = options;
-        const { file, level, encoding, outputJSON, flushInterval, maxBufferLength, allowDebugAtProd, splitTime } = this.options;
-        const fileOption = { file, level, encoding, outputJSON, flushInterval, maxBufferLength, allowDebugAtProd, splitTime };
+        const { file, level, encoding, outputJSON, flushInterval, maxBufferLength, allowDebugAtProd, splitTime, formatter } = this.options;
+        const fileOption = { file, level, encoding, outputJSON, flushInterval, maxBufferLength, allowDebugAtProd, splitTime, formatter };
 
         // 文件输出配置
         if (this.options.file) {
