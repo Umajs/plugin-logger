@@ -9,7 +9,7 @@
             "type": "node",
             "request": "launch",
             "outputCapture": "std",
-            "program": "${workspaceRoot}/packages/app/node_modules/ts-node/dist/bin.js",
+            "program": "${workspaceRoot}/node_modules/ts-node/dist/bin.js",
             "args": [
                 "__tests__/app/src/app.ts"
             ],
