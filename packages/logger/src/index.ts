@@ -5,6 +5,7 @@ import FileBufferTransport from './transports/fileBuffer';
 import UrsaLogger from './logger/ursaLogger';
 import ContextLogger from './logger/contextLogger';
 
+export default UrsaLogger;
 export {
     Logger,
     ConsoleTransport,
