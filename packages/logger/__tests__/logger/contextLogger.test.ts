@@ -6,18 +6,18 @@ import * as sleep from 'ko-sleep';
 import contextLogger from './../../src/logger/contextLogger';
 import { TConsoleMeta } from './../../src/types/console.t';
 import { TUrsaLoggerOption } from './../../src/types/loggeroption.t'
+import ContextLogger from './../../src/logger/contextLogger';
 
-const ursaOptions:TUrsaLoggerOption = {
+const options:TUrsaLoggerOption = {
     level: 'ALL',
     consoleLevel: 'NONE',
     file: path.join(__dirname, '../__mocks__/log/ctxLogger.test.log')
 } 
 const app = new Koa();
-
-let ctxLogger = new contextLogger(app.context, ursaOptions);
+let ctxLogger: contextLogger;
 
 app.use(async ctx => {
-    ctxLogger.updateCtx(ctx);
+    ctxLogger = new ContextLogger(ctx, options);;
     ctxLogger.info('ctxLogger-info');
     ctxLogger.warn('ctxLogger-warn');
     ctxLogger.error('ctxLogger-error');

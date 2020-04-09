@@ -1,25 +1,35 @@
-// 自定义插件
-import * as Koa from 'koa';
-import { Ursa } from '@ursajs/core';
-import { ContextLogger } from '@ursajs/logger';
 import * as path from 'path';
-import { TUrsaLoggerOption } from './type/loggeroption.t';
+import Ursa, { TPlugin, IContext } from '@ursajs/core';
+import { UrsaLogger } from '@ursajs/logger';
 
-export default (ursa: Ursa, options: TUrsaLoggerOption, context?: Koa.BaseContext) => {
-    const logger = new ContextLogger(context, {
-        level: 'ALL',
-        consoleLevel: 'ALL',
-        allowDebugAtProd: true,
-        encoding: 'utf-8',
-        outputJSON: true,
-        file: path.join(ursa.options.ROOT, '../logger/logger.log'), // 日志默认和src同级
-        ...options,
-    });
+const loggerConfig:any = Ursa.config.plugin.logger || {};
 
-    ursa.app.use((ctx: any, next) => {
-        logger.updateCtx(ctx);
-        ctx.logger = logger;
+const options = Object.assign({
+    level: 'DEBUG',
+    consoleLevel: 'ALL',
+    allowDebugAtProd: false,
+    encoding: 'utf-8',
+    outputJSON: true,
+    file: path.join(Ursa.instance().options.ROOT, '../log/logger.log'),
+    formatter(meta?:any) {
+        return `[${meta.level} ${meta.pid}] ${meta.date} ${meta.hostname} ${meta.paddingMessage}: ${meta.message}`;
+    },
+}, loggerConfig.options);
 
-        return next();
-    });
+export default <TPlugin>{
+    context: {
+        logger: UrsaLogger.instance(options),
+    },
+    use: {
+        async handler(ctx: IContext, next: Function) {
+            ctx.logger.meta = {
+                paddingMessage: `[${
+                    ctx.ip}/${
+                    ctx.method} ${
+                    ctx.url
+                }]`,
+            };
+            await next();
+        },
+    },
 };

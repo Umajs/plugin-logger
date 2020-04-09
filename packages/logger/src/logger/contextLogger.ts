@@ -11,8 +11,8 @@ export default class ContextLogger extends UrsaLogger {
      * @param ctx 上下文
      * @param logger wflogger实例
      */
-    constructor(ctx: Koa.BaseContext, option?:TUrsaLoggerOption) {
-        super(option);
+    constructor(ctx: Koa.BaseContext, options?: TUrsaLoggerOption) {
+        super(options);
         this.ctx = ctx;
     }
 
@@ -20,7 +20,7 @@ export default class ContextLogger extends UrsaLogger {
         return `[${meta.level} ${meta.pid}] ${meta.date} ${meta.hostname} ${meta.paddingMessage}: ${meta.message}`;
     }
 
-    get meta() {
+    get getMeta() {
         const meta:TConsoleMeta = {
             formatter: this.formatter,
             paddingMessage: this.paddingMessage,
@@ -42,9 +42,5 @@ export default class ContextLogger extends UrsaLogger {
             ctx.method} ${
             ctx.url
         }]`;
-    }
-
-    updateCtx(ctx: Koa.BaseContext): void {
-        this.ctx = ctx;
     }
 }
