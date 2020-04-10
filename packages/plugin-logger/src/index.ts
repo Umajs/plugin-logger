@@ -2,7 +2,7 @@ import * as path from 'path';
 import Ursa, { TPlugin, IContext } from '@ursajs/core';
 import { UrsaLogger } from '@ursajs/logger';
 
-const loggerConfig:any = Ursa.config.plugin.logger || {};
+const loggerConfig:any = Ursa.pluginOptions('logger');
 
 const options = Object.assign({
     level: 'DEBUG',
@@ -14,7 +14,7 @@ const options = Object.assign({
     formatter(meta?:any) {
         return `[${meta.level} ${meta.pid}] ${meta.date} ${meta.hostname} ${meta.paddingMessage}: ${meta.message}`;
     },
-}, loggerConfig.options);
+}, loggerConfig);
 
 export default <TPlugin>{
     context: {
