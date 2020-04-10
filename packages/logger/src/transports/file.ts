@@ -69,6 +69,9 @@ export default class FileTransport extends Transport {
                     const date = new Date();
                     const time = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}-${date.getHours()}${date.getMinutes()}${date.getSeconds()}`;
 
+                    fs.exists(self.file, (exist) => {
+                        if (!exist) return resolve();
+                    });
                     fs.rename(self.file, `${self.file}.${time}`, (err) => {
                         if (err) return reject(err);
                         resolve();
