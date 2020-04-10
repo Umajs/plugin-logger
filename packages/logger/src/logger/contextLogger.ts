@@ -1,46 +1,28 @@
 import * as Koa from 'koa';
+import * as path from 'path';
 import UrsaLogger from './ursaLogger';
-import { TConsoleMeta } from '../types/console.t';
 import { TUrsaLoggerOption } from '../types/loggeroption.t';
 
-export default class ContextLogger extends UrsaLogger {
-    private ctx: Koa.BaseContext;
+export default function (ctx: Koa.BaseContext, options?:TUrsaLoggerOption) {
+    const ctxLogger = UrsaLogger.instance({
+        level: 'DEBUG',
+        consoleLevel: 'ALL',
+        allowDebugAtProd: false,
+        encoding: 'utf-8',
+        outputJSON: true,
+        file: path.join(__dirname, '../log/logger.log'),
+        formatter(meta?:any) {
+            return `[${meta.level} ${meta.pid}] ${meta.date} ${meta.hostname} ${meta.paddingMessage}: ${meta.message}`;
+        },
+        ...options });
 
-    /**
-     * @constructor
-     * @param ctx 上下文
-     * @param logger wflogger实例
-     */
-    constructor(ctx: Koa.BaseContext, options?: TUrsaLoggerOption) {
-        super(options);
-        this.ctx = ctx;
-    }
-
-    formatter(meta?:TConsoleMeta) {
-        return `[${meta.level} ${meta.pid}] ${meta.date} ${meta.hostname} ${meta.paddingMessage}: ${meta.message}`;
-    }
-
-    get getMeta() {
-        const meta:TConsoleMeta = {
-            formatter: this.formatter,
-            paddingMessage: this.paddingMessage,
-        };
-
-        Reflect.defineProperty(meta, 'ctx', {
-            enumerable: false, // 可枚举属性设置false 不可被for ..in  Object.keys JSON.stringify访问
-            value: this.ctx,
-        });
-
-        return meta;
-    }
-
-    get paddingMessage() {
-        const { ctx } = this;
-
-        return `[${
+    ctxLogger.meta = {
+        paddingMessage: `[${
             ctx.ip}/${
             ctx.method} ${
             ctx.url
-        }]`;
-    }
+        }]`,
+    };
+
+    return ctxLogger;
 }

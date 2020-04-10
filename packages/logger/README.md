@@ -31,6 +31,13 @@ const Logger = new UrsaLogger({
    ...options
 })
 
+or
+
+//提供单例模式使用logger 避免多次实例化
+const {UrsaLogger } = require('@ursajs/logger');
+const Logger = UrsaLogger.instance({
+   ...options
+});
 
 //使用
 Logger.info('info');
@@ -39,6 +46,16 @@ Logger.warn('warn');
 Logger.error('error');
 ```
 
+如果用户需要使用ctx上的数据可直接使用contextLogger
+
+```javascript
+import {ContextLogger} from '@ursajs/logger';
+app.use(async ctx => {
+   ctx.logger = ContextLogger(ctx, options)
+   ctx.logger.info('ctxLogger-info');
+   ctx.body = 'Hello World';
+});
+```
 
 ## 配置属性
 ```js

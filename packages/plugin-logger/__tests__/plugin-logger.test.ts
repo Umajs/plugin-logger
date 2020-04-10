@@ -3,9 +3,7 @@ import * as fs from 'fs';
 import * as request from 'request';
 import './app/src/app.ts';
 
-request('http://localhost:8059', function(error, response, body){
-    process.exit();
-})
+request('http://localhost:8059', function(error, response, body){})
 describe('test src/index.ts', () => {
     let fileContent: string;
     beforeAll(() => {
@@ -20,4 +18,9 @@ describe('test src/index.ts', () => {
     it('should print "plugin-logger error" msg into file', async () => {
         expect(fileContent).toMatch(/plugin-logger error/);
     });
+    afterAll(() => {
+        setTimeout(() => {
+            process.exit();
+        }, 1000)
+    })
 });
