@@ -84,26 +84,24 @@ export function format(level:string, args?:any, meta:TConsoleMeta = {}, outputJS
  * 终端输出格式 & 样式配置（不同级别区分输出颜色）
  * @param meta
  */
-export function consoleFormatter(meta: TConsoleMeta) {
+export function colorfulLog(level: string, msg: string) {
     const duartionRegexp = /([0-9]+ms)/g;
     const categoryRegexp = /(\[[\w\-_.:]+\])/g;
     const httpMethodRegexp = /(GET|POST|PUT|PATH|HEAD|DELETE) /g;
-
-    let msg = defaultFormatter(meta);
 
     if (!chalk.supportsColor) {
         return msg;
     }
 
-    if (meta.level === 'ERROR') {
+    if (level === 'ERROR') {
         return chalk.red(msg);
     }
 
-    if (meta.level === 'WARN') {
+    if (level === 'WARN') {
         return chalk.yellow(msg);
     }
 
-    if (meta.level === 'DEBUG') {
+    if (level === 'DEBUG') {
         return chalk.blue(msg);
     }
 

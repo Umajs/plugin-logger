@@ -32,6 +32,7 @@ export default class UrsaLogger extends Logger {
             level: this.options.consoleLevel,
             allowDebugAtProd: this.options.allowDebugAtProd,
             outputJSON: this.options.outputJSON,
+            formatter: this.options.formatter,
         });
 
         this.set('console', consoleTransport);
