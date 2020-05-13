@@ -1,24 +1,24 @@
-# `@ursajs/plugin-logger`
+# `@umajs/plugin-logger`
 
-> ursajs框架日志插件,挂载到koa上下文ctx上。
+> umajs框架日志插件,挂载到koa上下文ctx上。
 
 ## Usage
 
 ```
-npm install @ursajs/plugin-logger --save
+npm install @umajs/plugin-logger --save
 
 ```
 ## logger插件配置
 ```
 //app/src/config/plugin.config.ts
 import * as path from 'path';
-import Ursa from '@ursajs/core';
+import Uma from '@umajs/core';
 export default {
     logger: {
         enable: true,
         options: {
             level: 'DEBUG', //日志输出级别
-            file: path.resolve(Ursa.instance().options.ROOT, '../log/ctxLogger.log'),
+            file: path.resolve(Uma.instance().options.ROOT, '../log/ctxLogger.log'),
             allowDebugAtProd: false, // 是否允许打印debug日志
         },
     }

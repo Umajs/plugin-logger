@@ -1,7 +1,7 @@
 {
-  "name": "@ursajs/plugin-logger",
-  "version": "0.0.5",
-  "description": "ursajs logger日志插件",
+  "name": "@umajs/plugin-logger",
+  "version": "0.0.0",
+  "description": "umajs logger日志插件",
   "author": "dazjean <zunyi_zjj@163.com>",
   "contributors": [
     {
@@ -29,7 +29,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:Ursajs/plugin-logger.git"
+    "url": "git@github.com:umajs/plugin-logger.git"
   },
   "scripts": {
     "test": "mocha test",
@@ -44,15 +44,15 @@
     "format": "eslint --fix 'src/**/*.{js,ts,tsx}'"
   },
   "dependencies": {
-    "@ursajs/logger": "^0.0.5"
+    "@umajs/logger": "^0.0.0"
   },
   "devDependencies": {
     "@types/koa": "^2.0.48",
     "@types/node": "^10.12.15",
     "@typescript-eslint/eslint-plugin": "^1.1.0",
     "@typescript-eslint/parser": "^1.1.0",
-    "@ursajs/core": "^0.1.0",
-    "@ursajs/router": "^0.1.0",
+    "@umajs/core": "^0.1.0",
+    "@umajs/router": "^0.1.0",
     "eslint": "^5.10.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.14.0",

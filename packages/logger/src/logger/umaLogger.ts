@@ -2,20 +2,20 @@ import * as path from 'path';
 import Logger from '../logger';
 import ConsoleTransport from '../transports/console';
 import FileBufferTransport from '../transports/fileBuffer';
-import { TUrsaLoggerOption } from '../types/loggeroption.t';
+import { TUmaLoggerOption } from '../types/loggeroption.t';
 
-let instance: UrsaLogger = null;
+let instance: UmaLogger = null;
 
-export default class UrsaLogger extends Logger {
-    constructor(options?:TUrsaLoggerOption) {
+export default class UmaLogger extends Logger {
+    constructor(options?:TUmaLoggerOption) {
         super();
         this.options = options;
         options && this.init(options);
     }
 
-    options: TUrsaLoggerOption;
+    options: TUmaLoggerOption;
 
-    init(options:TUrsaLoggerOption) {
+    init(options:TUmaLoggerOption) {
         this.options = options;
         const { file, level, encoding, outputJSON, flushInterval, maxBufferLength, allowDebugAtProd, splitTime, formatter } = this.options;
         const fileOption = { file, level, encoding, outputJSON, flushInterval, maxBufferLength, allowDebugAtProd, splitTime, formatter };
@@ -73,10 +73,10 @@ export default class UrsaLogger extends Logger {
         }
     }
 
-    static instance(options?: TUrsaLoggerOption):UrsaLogger {
+    static instance(options?: TUmaLoggerOption):UmaLogger {
         if (instance) return instance;
 
-        instance = new UrsaLogger(options);
+        instance = new UmaLogger(options);
 
         return instance;
     }

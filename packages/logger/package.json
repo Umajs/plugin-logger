@@ -1,7 +1,7 @@
 {
-  "name": "@ursajs/logger",
-  "version": "0.0.5",
-  "description": "ursajs logger日志",
+  "name": "@umajs/logger",
+  "version": "0.0.0",
+  "description": "umajs logger日志",
   "author": "BubbleM <bubblelm@163.com>",
   "contributors": [
     {
@@ -19,7 +19,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:Ursajs/plugin-logger.git"
+    "url": "git@github.com:Umajs/plugin-logger.git"
   },
   "license": "ISC",
   "main": "lib/index.js",

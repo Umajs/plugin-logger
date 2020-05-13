@@ -1,10 +1,10 @@
 import * as Koa from 'koa';
 import * as path from 'path';
-import UrsaLogger from './ursaLogger';
-import { TUrsaLoggerOption } from '../types/loggeroption.t';
+import UmaLogger from './umaLogger';
+import { TUmaLoggerOption } from '../types/loggeroption.t';
 
-export default function (ctx: Koa.BaseContext, options?:TUrsaLoggerOption) {
-    const ctxLogger = UrsaLogger.instance({
+export default function (ctx: Koa.BaseContext, options?:TUmaLoggerOption) {
+    const ctxLogger = UmaLogger.instance({
         level: 'DEBUG',
         consoleLevel: 'ALL',
         allowDebugAtProd: false,

@@ -1,6 +1,6 @@
-# `@ursajs/logger`
+# `@umajs/logger`
 
-## ursajs日志系统规划
+## umajs日志系统规划
 - [x] 日志分级（高）
 - [x] 日志模块缓存（高）
 - [x] 日期切割（高）
@@ -11,7 +11,7 @@
 
 ## 使用说明
 ```javascript
-const Logger = require('@ursajs/logger');
+const Logger = require('@umajs/logger');
 Logger.init({
     level: 'DEBUG', //日志输出级别
     dir: '/path/to/your/custom/log', //日志输出目录
@@ -26,16 +26,16 @@ Logger.init({
 
 or
 
-const {UrsaLogger } = require('@ursajs/logger');
-const Logger = new UrsaLogger({
+const {UmaLogger } = require('@umajs/logger');
+const Logger = new UmaLogger({
    ...options
 })
 
 or
 
 //提供单例模式使用logger 避免多次实例化
-const {UrsaLogger } = require('@ursajs/logger');
-const Logger = UrsaLogger.instance({
+const {UmaLogger } = require('@umajs/logger');
+const Logger = UmaLogger.instance({
    ...options
 });
 
@@ -49,7 +49,7 @@ Logger.error('error');
 如果用户需要使用ctx上的数据可直接使用contextLogger
 
 ```javascript
-import {ContextLogger} from '@ursajs/logger';
+import {ContextLogger} from '@umajs/logger';
 app.use(async ctx => {
    ctx.logger = ContextLogger(ctx, options)
    ctx.logger.info('ctxLogger-info');

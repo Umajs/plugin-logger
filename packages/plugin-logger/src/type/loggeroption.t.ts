@@ -1,4 +1,4 @@
-export type TUrsaLoggerOption = {
+export type TUmaLoggerOption = {
     level?: string,
     consoleLevel?: string,
     allowDebugAtProd?: boolean,

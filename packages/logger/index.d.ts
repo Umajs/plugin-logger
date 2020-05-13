@@ -1,6 +1,6 @@
 import * as Koa from "koa";
 
-export type WFLoggerOption = {
+export type UmaLoggerOption = {
     level?: string,
     consoleLevel?: string,
     allowDebugAtProd?: boolean,
@@ -37,9 +37,9 @@ export interface TransportFileBufferOption extends TransportFileOption {
  * 实例化日志模块
  * @param options WFLoggerOption
  */
-export class UrsaLogger {
-    constructor(options?: WFLoggerOption);
-    init(options: WFLoggerOption)
+export class UmaLogger {
+    constructor(options?: UmaLoggerOption);
+    init(options: UmaLoggerOption)
 }
 
 /**
@@ -48,10 +48,10 @@ export class UrsaLogger {
  * @param logger WFLogger
  */
 export class ContextLogger{
-    constructor(ctx: Koa.BaseContext, logger:UrsaLogger)
+    constructor(ctx: Koa.BaseContext, logger:UmaLogger)
 }
 
-export class Logger extends UrsaLogger{
+export class Logger extends UmaLogger{
     constructor();
     /**
      * 设置日志级别采用哪种打印方式

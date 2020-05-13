@@ -1,7 +1,7 @@
-import { Ursa } from '@ursajs/core';
+import { Uma } from '@umajs/core';
 
-export default (ursa: Ursa) => {
-    ursa.app.on('error', (e) => {
+export default (uma: Uma) => {
+    uma.app.on('error', (e) => {
         console.error(e);
     });
 };

@@ -1,12 +1,12 @@
 import * as path from 'path';
 import * as fs from 'fs';
-import UrsaLogger from './../../src/logger/ursaLogger';
-import { TUrsaLoggerOption } from '../../src/types/loggeroption.t'
+import UmaLogger from '../../src/logger/umaLogger';
+import { TUmaLoggerOption } from '../../src/types/loggeroption.t'
 import ConsoleTransport from '../../src/transports/console';
 import FileBufferTransport from '../../src/transports/fileBuffer';
 
 describe('test src/logger/ursaLogger.ts',()=>{
-    const options:TUrsaLoggerOption = {
+    const options:TUmaLoggerOption = {
         level: 'ALL',
         consoleLevel: 'ALL',
         replaceConsole:true,
@@ -17,9 +17,9 @@ describe('test src/logger/ursaLogger.ts',()=>{
         errorLogName: 'errorlogger.test.log',
         infoLogName: 'infologger.test.log',
         warnLogName: 'warnlogger.test.log',
-        file: path.join(__dirname, '../__mocks__/log/ursaLogger.test.log')
+        file: path.join(__dirname, '../__mocks__/log/umaLogger.test.log')
     } 
-    const logger = UrsaLogger.instance(options);
+    const logger = UmaLogger.instance(options);
     logger.close();
     test('should get Transports Object is exist', () => {
         expect(logger.get('file')).toBeInstanceOf(FileBufferTransport);  // 断言是否存在file类型日志转换器
