@@ -9,7 +9,7 @@ lerna-debug.log
 /packages/*/*/*/*.log
 .history/
 packages/plugin-logger/__tests__/app/src/logs/
-packages/logger/__tests__/__mocks__/log/
+packages/logger/__tests__/__fixtures__/log/
 yarn-error.log
 yarn.lock
 packages/app/log/

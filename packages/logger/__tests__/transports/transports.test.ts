@@ -1,10 +1,6 @@
 import * as os from 'os';
 import * as utility from 'utility';
-import Transport from '../../src/transports/transport';
-
-const transport = new Transport({
-    level: "INFO"
-});
+import {transport} from '../__fixtures__/transport';
 
 describe('test src/transports/transport.ts', () => {
     it('Transport default params', () => {

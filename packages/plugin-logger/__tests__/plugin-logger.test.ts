@@ -1,26 +1,23 @@
 import * as path from 'path'; 
 import * as fs from 'fs';
-import * as request from 'request';
+import * as request from 'supertest';
 import './app/src/app.ts';
 
-request('http://localhost:8059', function(error, response, body){})
 describe('test src/index.ts', () => {
-    let fileContent: string;
-    beforeAll(() => {
-        fileContent =  fs.readFileSync(path.join(__dirname, '/app/log/ctxLogger.log'), 'utf8');
+    test('should log msg into file', done => {
+        request('http://localhost:8059')
+            .get('/')
+            .expect('done', (err) => {
+               const fileContent =  fs.readFileSync(path.join(__dirname, '/app/log/ctxLogger.log'), 'utf8');
+               expect(fileContent).toMatch(/plugin-logger info/);
+               expect(fileContent).toMatch(/plugin-logger warn/);
+               expect(fileContent).toMatch(/plugin-logger error/);
+               done()
+            })
     })
-    it('should print "plugin-logger info" msg into file', async () => {
-        expect(fileContent).toMatch(/plugin-logger info/);
-    });
-    it('should print "plugin-logger warn" msg into file', async () => {
-        expect(fileContent).toMatch(/plugin-logger warn/);
-    });
-    it('should print "plugin-logger error" msg into file', async () => {
-        expect(fileContent).toMatch(/plugin-logger error/);
-    });
-    afterAll(() => {
-        setTimeout(() => {
-            process.exit();
-        }, 1000)
-    })
+    // afterAll(() => {
+    //     setTimeout(() => {
+    //         process.exit();
+    //     }, 0)
+    // })
 });

@@ -5,7 +5,7 @@ import FileBufferTransport from '../../src/transports/fileBuffer';
 
 var logger = new Logger();
 logger.set('console', new ConsoleTransport({
-    level: 'ALL'
+    level: 'NONE'
 }));
 logger.set('file', new FileBufferTransport({
     file: path.join(__dirname, './log/logger.test.log'),
@@ -15,9 +15,5 @@ logger.set('file', new FileBufferTransport({
     encoding: 'utf8',
     outputJSON: false
 }));
-logger.overrideConsole();
-logger.warn('jest-warn');
-logger.error('jest-error');
-logger.info('jest-info');
-console.log('jest-replaceConsole');
-logger.close();
+
+export default logger;

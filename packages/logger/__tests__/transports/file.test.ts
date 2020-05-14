@@ -1,26 +1,22 @@
 import * as path from 'path';
 import * as fs from 'fs';
-import FileTransport from '../../src/transports/file';
-
-const transport = new FileTransport({
-    level: "INFO",
-    file: path.join(__dirname, '../__mocks__/log/file.test.log'),
-    encoding: 'utf8'
-});
+import * as sleep from 'ko-sleep';
+import { fileTransport } from '../__fixtures__/transport';
 
 describe('test src/transports/file.ts', () => {
     it('FileTransport default params', () => {
-        expect(transport.allowDebugAtProd).toEqual(false);
-        expect(transport.level).toEqual('INFO');
-        expect(transport.outputJSON).toEqual(true);
-        expect(transport.formatter).toEqual(null);
-        expect(transport.file).toEqual(path.join(__dirname, '../__mocks__/log/file.test.log'));
-        expect(transport.encoding).toEqual('utf8');
+        expect(fileTransport.allowDebugAtProd).toEqual(false);
+        expect(fileTransport.level).toEqual('INFO');
+        expect(fileTransport.outputJSON).toEqual(true);
+        expect(fileTransport.formatter).toEqual(null);
+        expect(fileTransport.file).toEqual(path.join(__dirname, '../__fixtures__/log/file.test.log'));
+        expect(fileTransport.encoding).toEqual('utf8');
     });
 
-    it('should log msg into file', async() => {
-        await transport.log('info', ['file log test']);
-        const content =  fs.readFileSync(path.join(__dirname, '../__mocks__/log/file.test.log'), 'utf8');
+    it('should log msg into file', function*(){
+        fileTransport.log('INFO', ['file log test']);
+        yield sleep(10)
+        const content =  fs.readFileSync(path.join(__dirname, '../__fixtures__/log/file.test.log'), 'utf8');
         expect(content).toMatch(/file log test/);
     });
 });

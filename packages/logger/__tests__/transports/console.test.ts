@@ -7,7 +7,7 @@ describe('test src/logger.ts', () => {
     beforeAll(async() => {
         await new Promise(resolve => {
             const m = child_process.spawn('ts-node', [
-                path.join(__dirname, "../__mocks__/console.ts")
+                path.join(__dirname, "../__fixtures__/console.ts")
             ], {
                 cwd: process.cwd(),
             });

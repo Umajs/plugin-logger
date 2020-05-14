@@ -13,11 +13,11 @@ describe('test src/logger/ursaLogger.ts',()=>{
         allowDebugAtProd: true,
         encoding: 'utf-8',
         outputJSON: true,
-        dir: path.join(__dirname, '../__mocks__/log'),
+        dir: path.join(__dirname, '../__fixtures__/log'),
         errorLogName: 'errorlogger.test.log',
         infoLogName: 'infologger.test.log',
         warnLogName: 'warnlogger.test.log',
-        file: path.join(__dirname, '../__mocks__/log/umaLogger.test.log')
+        file: path.join(__dirname, '../__fixtures__/log/umaLogger.test.log')
     } 
     const logger = UmaLogger.instance(options);
     logger.close();
@@ -31,6 +31,6 @@ describe('test src/logger/ursaLogger.ts',()=>{
         expect(files).toContain('errorlogger.test.log');
         expect(files).toContain('warnlogger.test.log');
         expect(files).toContain('infologger.test.log');
-        expect(files).toContain('ursaLogger.test.log');
+        expect(files).toContain('umaLogger.test.log');
     });
 })

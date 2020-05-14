@@ -1,6 +1,6 @@
 import * as os from 'os';
 import * as utility from 'utility';
-import { normalizeLevel, format, consoleFormatter } from './../src/utils';
+import { normalizeLevel, format } from './../src/utils';
 
 describe('test src/utils.ts', () => {
     // normalizeLevel获取日志级别对应number
@@ -41,17 +41,5 @@ describe('test src/utils.ts', () => {
         }
         let result = format('info', ['msg'], {formatter: formatter}, true);
         expect(result).toEqual(`info-${process.pid} ${utility.logDate(',').split(',')[0]} ${os.hostname}: msg`+os.EOL);
-    });
-
-    //终端格式化输出 添加颜色
-    it('should output meta format msg', () => {
-        let meta = {
-            level: 'info',
-            pid: process.pid,
-            date: utility.logDate(',').split(',')[0],
-            hostname: 'os.hostname',
-            message: 'info test'
-        }
-        expect(consoleFormatter(meta)).toEqual(`[info ${process.pid}] ${utility.logDate(',').split(',')[0]} os.hostname: info test`);
     });
 });
