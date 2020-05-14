@@ -15,9 +15,4 @@ describe('test src/index.ts', () => {
                done()
             })
     })
-    // afterAll(() => {
-    //     setTimeout(() => {
-    //         process.exit();
-    //     }, 0)
-    // })
 });
