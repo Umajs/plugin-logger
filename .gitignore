@@ -13,3 +13,5 @@ packages/logger/__tests__/__fixtures__/log/
 yarn-error.log
 yarn.lock
 packages/app/log/
+.npmrc
+package-lock.json

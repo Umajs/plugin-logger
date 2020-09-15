@@ -22,6 +22,7 @@ Logger.init({
     outputJSON:true, //是否格式化输出携带pid等信息 false仅输出msg
     consoleLevel:'debug', //终端日志输出级别
     allowDebugAtProd:true, //生产环境是否允许打印debug日志
+    replaceConsole:false, //是否重写系统console日志
 });  //在启动时初始化一次 其他地方直接import Logger直接使用
 
 or
@@ -69,6 +70,7 @@ app.use(async ctx => {
     encoding:'utf-8', //日志编码格式
     outputJSON:true, //是否格式化输出携带pid等信息 false仅输出msg
     consoleLevel:'debug', //终端日志输出级别
+    replaceConsole:false, //是否重写系统console日志
     allowDebugAtProd:true, //是否允许打印debug日志
     flushInterval: 1000, //文件流定时写入
     maxBufferLength: 1000, //最大buffer 超出限制执行写入
