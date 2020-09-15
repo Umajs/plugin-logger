@@ -1,6 +1,6 @@
 {
   "name": "@umajs/plugin-logger",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "umajs logger日志插件",
   "author": "dazjean <zunyi_zjj@163.com>",
   "contributors": [
@@ -44,7 +44,7 @@
     "format": "eslint --fix 'src/**/*.{js,ts,tsx}'"
   },
   "dependencies": {
-    "@umajs/logger": "^0.1.0"
+    "@umajs/logger": "^0.1.1"
   },
   "devDependencies": {
     "@types/koa": "^2.0.48",

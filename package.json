@@ -5,8 +5,8 @@
     "init": "rm -rf packages/*/node_modules && rm -rf packages/*/lib && lerna bootstrap",
     "commit": "npx git-cz",
     "publish": "lerna publish",
-    "test:logger": "jest ./packages/logger/__tests__ --runInBand --forceExit",
-    "test:plugin-logger": "jest ./packages/plugin-logger/__tests__ --runInBand --forceExit"
+    "test:logger": "npx jest ./packages/logger/__tests__ --runInBand --forceExit",
+    "test:plugin-logger": "npx jest ./packages/plugin-logger/__tests__ --runInBand --forceExit"
   },
   "devDependencies": {
     "@types/jest": "^24.0.13",

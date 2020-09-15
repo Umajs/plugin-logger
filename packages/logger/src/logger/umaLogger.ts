@@ -1,4 +1,5 @@
 import * as path from 'path';
+import * as Assert from 'assert';
 import Logger from '../logger';
 import ConsoleTransport from '../transports/console';
 import FileBufferTransport from '../transports/fileBuffer';
@@ -39,6 +40,7 @@ export default class UmaLogger extends Logger {
 
         // ERROR级别 错误日志文件单独输出配置
         if (this.options.errorLogName) {
+            Assert.ok(this.options.dir, 'When set errorLogName, the options dir must be a string path');
             const errorLogger = new FileBufferTransport({
                 ...fileOption,
                 file: path.join(this.options.dir, this.options.errorLogName),
@@ -49,6 +51,7 @@ export default class UmaLogger extends Logger {
 
         // INFO级别 日志文件单独输出配置
         if (this.options.infoLogName) {
+            Assert.ok(this.options.dir, 'When set infoLogName, the options dir must be a string path');
             const infoLogger = new FileBufferTransport({
                 ...fileOption,
                 file: path.join(this.options.dir, this.options.infoLogName),
@@ -59,6 +62,7 @@ export default class UmaLogger extends Logger {
 
         // WARN级别 日志文件单独输出配置
         if (this.options.warnLogName) {
+            Assert.ok(this.options.dir, 'When set warnLogName, the options dir must be a string path');
             const warnLogger = new FileBufferTransport({
                 ...fileOption,
                 file: path.join(this.options.dir, this.options.warnLogName),
