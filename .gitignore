@@ -14,4 +14,4 @@ yarn-error.log
 yarn.lock
 packages/app/log/
 .npmrc
-package-lock.json
+**/package-lock.json

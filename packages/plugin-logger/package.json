@@ -52,6 +52,7 @@
     "@typescript-eslint/eslint-plugin": "^1.1.0",
     "@typescript-eslint/parser": "^1.1.0",
     "@umajs/router": "^0.1.0",
+    "@umajs/core": "^0.1.0",
     "eslint": "^5.10.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.14.0",
@@ -64,7 +65,7 @@
     "typescript": "^3.2.2"
   },
   "peerDependencies": {
-    "@umajs/core": "^0.1.0"
+    "@umajs/core": ">=0.1.0"
   },
   "gitHead": "986c06334daecc7e8169c5a405fe71dac8093329"
 }
