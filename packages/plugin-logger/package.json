@@ -1,6 +1,6 @@
 {
   "name": "@umajs/plugin-logger",
-  "version": "0.1.1",
+  "version": "2.0.0",
   "description": "umajs logger日志插件",
   "author": "dazjean <zunyi_zjj@163.com>",
   "contributors": [
@@ -44,15 +44,15 @@
     "format": "eslint --fix 'src/**/*.{js,ts,tsx}'"
   },
   "dependencies": {
-    "@umajs/logger": "^0.1.1"
+    "@umajs/logger": "^2.0.0"
   },
   "devDependencies": {
     "@types/koa": "^2.0.48",
     "@types/node": "^10.12.15",
     "@typescript-eslint/eslint-plugin": "^1.1.0",
     "@typescript-eslint/parser": "^1.1.0",
-    "@umajs/router": "^2.0.1",
     "@umajs/core": "^2.0.1",
+    "@umajs/router": "^2.0.1",
     "eslint": "^5.10.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.14.0",
