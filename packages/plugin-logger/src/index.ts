@@ -22,10 +22,9 @@ export default (): TPlugin => ({
     use: {
         async handler(ctx: IContext, next: Function) {
             ctx.logger.meta = {
-                paddingMessage: `[${ctx.ip}/${ctx.method} ${ctx.url
-                    }]`,
+                paddingMessage: `[${ctx.ip}/${ctx.method} ${ctx.url}]`,
             };
             await next();
         },
     },
-})
+});
