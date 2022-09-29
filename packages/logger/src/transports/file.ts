@@ -69,8 +69,7 @@ export default class FileTransport extends Transport {
 
                 await new Promise((resolve, reject) => {
                     const date = new Date();
-                    const time = `${date.getFullYear()}-${date.getMonth() + 1}
-                        -${date.getDate()}-${date.getHours()}${date.getMinutes()}${date.getSeconds()}`;
+                    const time = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}-${date.getHours()}${date.getMinutes()}${date.getSeconds()}`;
 
                     fs.exists(self.file, (exist) => {
                         if (!exist) return resolve(true);
