@@ -2,6 +2,7 @@ import * as os from 'os';
 import * as util from 'util';
 import * as utility from 'utility';
 import chalk from 'chalk';
+import * as cluster from 'cluster';
 import { TConsoleMeta } from './types/console.t';
 import getLevel from './level';
 
@@ -111,4 +112,18 @@ export function colorfulLog(level: string, msg: string) {
     msg = msg.replace(httpMethodRegexp, chalk.cyan('$1'));
 
     return msg;
+}
+
+/**
+ * 判断是否是主进程，PM2集群模式时，默认以NODE_APP_INSTANCE==='0'作为唯一的日志切割进程
+ * @returns isMaster
+ */
+export function isMainProcess() {
+    let isMaster = false;
+
+    if (cluster.isMaster || process.env.NODE_APP_INSTANCE === '0') {
+        isMaster = true;
+    }
+
+    return isMaster;
 }

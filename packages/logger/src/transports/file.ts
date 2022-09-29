@@ -5,6 +5,7 @@ import * as utility from 'utility';
 import * as cluster from 'cluster';
 import * as schedule from 'node-schedule';
 import * as util from 'util';
+import { isMainProcess } from '../utils';
 import Transport from './transport';
 import { ITransportFileOption } from '../types/transport.t';
 import { TConsoleMeta } from '../types/console.t';
@@ -54,8 +55,9 @@ export default class FileTransport extends Transport {
     splitLog() {
         const self = this;
 
-        schedule.scheduleJob(this.splitTime, async () => {
-            if (cluster.isMaster) {
+        if (isMainProcess()) {
+            // 主进程创建定时任务负责文件切割
+            schedule.scheduleJob(this.splitTime, async () => {
                 // 主进程通知各工作进程不要执行写入
                 for (const id in cluster.workers) {
                     if (cluster.workers[id]) {
@@ -67,14 +69,15 @@ export default class FileTransport extends Transport {
 
                 await new Promise((resolve, reject) => {
                     const date = new Date();
-                    const time = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}-${date.getHours()}${date.getMinutes()}${date.getSeconds()}`;
+                    const time = `${date.getFullYear()}-${date.getMonth() + 1}
+                        -${date.getDate()}-${date.getHours()}${date.getMinutes()}${date.getSeconds()}`;
 
                     fs.exists(self.file, (exist) => {
-                        if (!exist) return resolve();
+                        if (!exist) return resolve(true);
                     });
                     fs.rename(self.file, `${self.file}.${time}`, (err) => {
                         if (err) return reject(err);
-                        resolve();
+                        resolve(true);
                     });
                 });
                 self.stream = self.createStream();
@@ -85,9 +88,8 @@ export default class FileTransport extends Transport {
                         cluster.workers[id].send({ writable: true });
                     }
                 }
-            }
-        });
-        if (cluster.isWorker) {
+            });
+        } else {
             process.on('message', (msg) => {
                 if (msg.writable) {
                     this.reload();
@@ -104,10 +106,10 @@ export default class FileTransport extends Transport {
         const stream = fs.createWriteStream(this.file, { flags: 'a', encoding: this.encoding });
 
         const onError = (err: Error) => {
-            console.error('%s ERROR %s [wf-logger] [%s] %s',
+            console.error('%s ERROR %s [UMajs-logger] [%s] %s',
                 utility.logDate(','), process.pid, this.file, err.stack);
             this.reload();
-            console.warn('%s WARN %s [wf-logger] [%s] reloaded', utility.logDate(','), process.pid, this.file);
+            console.warn('%s WARN %s [UMajs-logger] [%s] reloaded', utility.logDate(','), process.pid, this.file);
         };
 
         // only listen error once because stream will reload after error
